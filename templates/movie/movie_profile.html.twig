@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1> {{  movie.title }}</h1>
+        
+    {% if movie.poster|default %}
+        <img src="{{ asset('uploads/images/' ~ movie.poster)|imagine_filter('thumbnail_medium') }}"> <br />
+    {% endif %}
+
+    {{ movie.description }} <br />
+    {{ duration }} <br />
+    {{ movie.premiere|date('d') }}
+    {{ movie.premiere|date('F') }}
+    {{ movie.premiere|date('Y') }} <br />
+
+{% endblock %}

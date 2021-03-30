@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if movies %}
+        <h1> All movies in the databse: </h1>
+        {% for movie in movies %}
+            {{ loop.index }}.
+            
+            {% if movie.poster|default %}
+                <img src="{{ asset('uploads/images/' ~ movie.poster)|imagine_filter('thumbnail_small') }}">
+            {% endif %}
+
+            <a href="{{ path('app_show_one_movie', { title: movie.title, id: movie.id }) }}">
+            {{ movie.title }} <br />
+            </a>
+        {% endfor %}
+    {% else %}
+        <h2> No movies in the database. </h2>
+    {% endif %}
+
+{% endblock %}
