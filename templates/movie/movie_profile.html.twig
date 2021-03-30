@@ -8,7 +8,7 @@
         <img src="{{ asset('uploads/images/' ~ movie.poster)|imagine_filter('thumbnail_medium') }}"> <br />
     {% endif %}
 
-    {{ movie.description }} <br />
+    {{ movie.description|raw }} <br />
     {{ duration }} <br />
     {{ movie.premiere|date('d') }}
     {{ movie.premiere|date('F') }}
