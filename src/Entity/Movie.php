@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
@@ -42,9 +44,15 @@ class Movie
      */
     private $poster;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="movies")
+     */
+    private $genre;
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->genre = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -108,6 +116,30 @@ class Movie
     public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenre(): Collection
+    {
+        return $this->genre;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genre->contains($genre)) {
+            $this->genre[] = $genre;
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genre->removeElement($genre);
 
         return $this;
     }
