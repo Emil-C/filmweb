@@ -13,8 +13,10 @@ class DurationConverter
 
         if ($hours == 0) {
             return sprintf('%d min.', $minutes);
+        } elseif ($minutes === 0) {
+            return sprintf('%d h', $hours);
         } else {
-            return sprintf('%d h %d min.', $hours, $minutes);
+            return sprintf('%d h %d min.', $hours, $minutes);            
         }
         
     }
