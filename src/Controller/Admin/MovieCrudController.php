@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-// use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -52,7 +52,7 @@ class MovieCrudController extends AbstractCrudController
                 ->hideOnIndex()
                 ->setBasePath('/uploads/images')
                 ->setUploadDir('/public/uploads/images/'),
-            // AssociationField::new('genre')
+            AssociationField::new('genre')
         ];
     }
 
@@ -62,7 +62,7 @@ class MovieCrudController extends AbstractCrudController
             ->add('title')
             ->add('duration')
             ->add('premiere')
-            // ->add('genre')
+            ->add('genre')
             ;
     }
 
@@ -72,7 +72,7 @@ class MovieCrudController extends AbstractCrudController
         ->setDateFormat('dd MMMM y')
         ->setPaginatorPageSize(30)
         ->setPaginatorRangeSize(2)
-        ->showEntityActionsAsDropdown()
+        // ->showEntityActionsAsDropdown()
         ;
     }
     
