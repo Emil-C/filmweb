@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
@@ -12,8 +13,7 @@ class Movie
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", unique=true)
      */
     private $id;
 
@@ -42,7 +42,12 @@ class Movie
      */
     private $poster;
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
+
+    public function getId(): ?string
     {
         return $this->id;
     }
