@@ -11,9 +11,8 @@
                 <img src="{{ asset('uploads/images/' ~ movie.poster)|imagine_filter('thumbnail_small') }}">
             {% endif %}
 
-            <a href="{{ path('app_show_one_movie', { title: movie.title, id: movie.id }) }}">
-            {{ movie.title }} <br />
-            </a>
+            <a href="{{ path('app_show_one_movie', { title: movie.title, id: movie.id }) }}"> {{ movie.title }} </a>
+            <br />
         {% endfor %}
     {% else %}
         <h2> No movies in the database. </h2>
