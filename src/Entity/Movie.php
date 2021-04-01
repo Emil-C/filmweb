@@ -143,4 +143,9 @@ class Movie
 
         return $this;
     }
+    
+    public function getPosterPath()
+    {
+        return '/public/uploads/images/'.$this->poster;
+    }
 }
