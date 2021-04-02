@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActorRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -42,9 +44,15 @@ class Actor
      */
     private $biography;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="actors")
+     */
+    private $movie;
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->movie = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -98,5 +106,34 @@ class Actor
         $this->biography = $biography;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Movie[]
+     */
+    public function getMovie(): Collection
+    {
+        return $this->movie;
+    }
+
+    public function addMovie(Movie $movie): self
+    {
+        if (!$this->movie->contains($movie)) {
+            $this->movie[] = $movie;
+        }
+
+        return $this;
+    }
+
+    public function removeMovie(Movie $movie): self
+    {
+        $this->movie->removeElement($movie);
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return sprintf('%s %s', $this->fName, $this->lName);
     }
 }

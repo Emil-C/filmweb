@@ -20,17 +20,5 @@ class GenreCrudController extends AbstractCrudController
         return $filters
             ->add('name')
             ;
-    }
-
-    
-    // public function configureFields(string $pageName): iterable
-    // {
-    //     return [
-    //         IdField::new('id')
-    //             ->hideOnForm()
-    //             ->hideOnIndex(),
-    //         TextField::new('name'),
-    //     ];
-    // }
-    
+    }  
 }

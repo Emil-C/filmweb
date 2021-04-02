@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -30,7 +31,7 @@ class ActorCrudController extends AbstractCrudController
             TextField::new('fName', 'First name'),
             TextField::new('lName', 'Last name'),
             DateField::new('birthDate', 'Birth date'),
-            TextEditorField::new('biography'),
+            TextEditorField::new('biography')
         ];
     }
 

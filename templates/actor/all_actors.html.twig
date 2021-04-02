@@ -8,8 +8,11 @@
 
         {% for actor in actors %}
             {{ loop.index }}.
+            <a href="{{ path('app_show_actor_profile', { id: actor.id }) }}">
             {{ actor.fName }}
-            {{ actor.lName }} <br />
+            {{ actor.lName }} 
+            </a>
+            <br />
         {% endfor %}
 
     {% else %}

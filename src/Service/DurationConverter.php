@@ -18,6 +18,5 @@ class DurationConverter
         } else {
             return sprintf('%d h %d min.', $hours, $minutes);            
         }
-        
     }
 }

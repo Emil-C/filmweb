@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> {{ fullName }} </h1>
+    {{ actor.biography|raw }}
+    {{ actor.birthDate|date('d.m.Y') }}
+
+{% endblock %}

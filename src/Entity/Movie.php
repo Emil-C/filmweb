@@ -49,10 +49,16 @@ class Movie
      */
     private $genre;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="movie")
+     */
+    private $actors;
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
         $this->genre = new ArrayCollection();
+        $this->actors = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -147,5 +153,37 @@ class Movie
     public function getPosterPath()
     {
         return '/public/uploads/images/'.$this->poster;
+    }
+
+    /**
+     * @return Collection|Actor[]
+     */
+    public function getActors(): Collection
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor): self
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors[] = $actor;
+            // $actor->addMovie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor): self
+    {
+        if ($this->actors->removeElement($actor)) {
+            $actor->removeMovie($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

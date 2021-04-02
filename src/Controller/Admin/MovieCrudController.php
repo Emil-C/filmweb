@@ -40,11 +40,12 @@ class MovieCrudController extends AbstractCrudController
                     
                     return $currentDate > $premierDate ? $value : 'Coming soon ' . $value;
                 }),
-                ImageField::new('poster')
+            ImageField::new('poster')
                 ->hideOnIndex()
                 ->setBasePath('/uploads/images')
                 ->setUploadDir('/public/uploads/images/'),
-                AssociationField::new('genre')
+            AssociationField::new('genre'),
+            AssociationField::new('actors')
         ];
     }
     
@@ -71,7 +72,5 @@ class MovieCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
-            // ->setPermission(Action::NEW, 'ROLE_ADMIN')
-            // ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN');
     }
 }
