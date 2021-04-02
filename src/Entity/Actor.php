@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ActorRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
@@ -29,6 +30,10 @@ class Actor
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Assert\Range(
+     *      max = "now",
+     * )
      */
     private $birthDate;
 

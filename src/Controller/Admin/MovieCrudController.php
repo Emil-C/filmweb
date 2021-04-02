@@ -23,6 +23,50 @@ class MovieCrudController extends AbstractCrudController
         return Movie::class;
     }
 
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id')
+            ->hideOnForm()
+                ->hideOnIndex()
+                ->hideOnDetail(),
+                TextField::new('title'),
+                TextEditorField::new('description'),
+            IntegerField::new('duration', 'Duration [min]'),
+            DateField::new('premiere')
+            ->formatValue(function ($value) {
+                $currentDate = strtotime(date('d M Y'));
+                    $premierDate = strtotime($value);
+                    
+                    return $currentDate > $premierDate ? $value : 'Coming soon ' . $value;
+                }),
+                ImageField::new('poster')
+                ->hideOnIndex()
+                ->setBasePath('/uploads/images')
+                ->setUploadDir('/public/uploads/images/'),
+                AssociationField::new('genre')
+        ];
+    }
+    
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+        ->add('title')
+        ->add('duration')
+        ->add('premiere')
+        ->add('genre')
+        ;
+    }
+    
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+        ->setDateFormat('dd MMMM y')
+        ->setPaginatorPageSize(30)
+        ->setPaginatorRangeSize(2)
+        ;
+    }
+    
     public function configureActions(Actions $actions): Actions
     {
         return $actions
@@ -30,49 +74,4 @@ class MovieCrudController extends AbstractCrudController
             // ->setPermission(Action::NEW, 'ROLE_ADMIN')
             // ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN');
     }
-
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id')
-                ->hideOnForm()
-                ->hideOnIndex()
-                ->hideOnDetail(),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-            IntegerField::new('duration', 'Duration [min]'),
-            DateField::new('premiere')
-                ->formatValue(function ($value) {
-                    $currentDate = strtotime(date('d M Y'));
-                    $premierDate = strtotime($value);
-
-                    return $currentDate > $premierDate ? $value : 'Coming soon ' . $value;
-                }),
-            ImageField::new('poster')
-                ->hideOnIndex()
-                ->setBasePath('/uploads/images')
-                ->setUploadDir('/public/uploads/images/'),
-            AssociationField::new('genre')
-        ];
-    }
-
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add('title')
-            ->add('duration')
-            ->add('premiere')
-            ->add('genre')
-            ;
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-    return $crud
-        ->setDateFormat('dd MMMM y')
-        ->setPaginatorPageSize(30)
-        ->setPaginatorRangeSize(2)
-        ;
-    }
-    
 }
