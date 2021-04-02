@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1> All actors in the database: </h1>
+
+    {% if actors %}
+
+        {% for actor in actors %}
+            {{ loop.index }}.
+            {{ actor.fName }}
+            {{ actor.lName }} <br />
+        {% endfor %}
+
+    {% else %}
+        <h3> There's no actors yet. </h3>
+    {% endif %}
+
+{% endblock %}

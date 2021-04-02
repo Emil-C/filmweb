@@ -19,7 +19,7 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    public function findAllMovies()
+    public function findAllMovies(): array
     {
         return $this
             ->createQueryBuilder('m')
