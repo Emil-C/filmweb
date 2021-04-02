@@ -37,11 +37,9 @@ class Actor
      */
     private $biography;
 
-    public function __construct(string $fName, string $lName)
+    public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->fName = $fName;   
-        $this->lName = $lName;   
     }
 
     public function getId(): ?string
@@ -54,24 +52,24 @@ class Actor
         return $this->fName;
     }
 
-    // public function setFName(string $fName): self
-    // {
-    //     $this->fName = $fName;
+    public function setFName(string $fName): self
+    {
+        $this->fName = $fName;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getLName(): ?string
     {
         return $this->lName;
     }
 
-    // public function setLName(string $lName): self
-    // {
-    //     $this->lName = $lName;
+    public function setLName(string $lName): self
+    {
+        $this->lName = $lName;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getBirthDate(): ?\DateTimeInterface
     {

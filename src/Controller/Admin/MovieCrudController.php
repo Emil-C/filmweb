@@ -72,7 +72,6 @@ class MovieCrudController extends AbstractCrudController
         ->setDateFormat('dd MMMM y')
         ->setPaginatorPageSize(30)
         ->setPaginatorRangeSize(2)
-        // ->showEntityActionsAsDropdown()
         ;
     }
     
