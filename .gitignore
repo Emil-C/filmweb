@@ -9,7 +9,7 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-/public/uploads
+/public/uploads/images
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
