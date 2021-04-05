@@ -8,12 +8,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User implements UserInterface
+class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id
@@ -53,6 +54,11 @@ class User implements UserInterface
      *      max = "now-12 years")
      */
     private $birthDate;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $locale;
 
 
     public function __construct()
@@ -175,5 +181,29 @@ class User implements UserInterface
         $this->birthDate = $birthDate;
 
         return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($user instanceof self)
+        {
+            if ($user->getLocale() != $this->locale) {
+                return false;
+            }    
+        }
+
+        return true;
     }
 }

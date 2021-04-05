@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1> All actors in the database: </h1>
+<h1> {% trans %} All actors in the database {% endtrans %} </h1>
 
     {% if actors %}
 
@@ -16,7 +16,7 @@
         {% endfor %}
 
     {% else %}
-        <h3> There's no actors yet. </h3>
+       <h3> {% trans %} There's no actors yet {% endtrans %} </h3>
     {% endif %}
 
 {% endblock %}
