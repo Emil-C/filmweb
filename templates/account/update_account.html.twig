@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Edit your profile {% endblock %}
+
+{% block body %}
+
+<h1> Edit your profile </h1>
+
+    {{ form_start(accountForm) }}
+        {{ form_row(accountForm.fName, {
+            label: 'First name'
+        }) }}
+        {{ form_row(accountForm.lName, {
+            label: 'Last name'
+        }) }}
+        {{ form_row(accountForm.email, {
+            label: 'E-mail'
+        }) }}
+        {{ form_row(accountForm.birthDate, {
+            label: 'Birth date'
+        }) }}
+
+        <button type="submit">Save</button>
+    {{ form_end(accountForm) }}
+{% endblock %}

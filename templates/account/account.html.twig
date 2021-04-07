@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Your profile {% endblock %}
+
+{% block body %}
+
+<h1> Your profile </h1>
+
+{{ app.user.fName }}
+{{ app.user.lName }} <br />
+{{ app.user.birthDate|date('d.m.Y') }} <br />
+{{ app.user.email }} <br />
+
+<a href="{{ path('app_update_account') }}"> {% trans %} Edit {% endtrans %} </a>
+
+{% endblock %}
