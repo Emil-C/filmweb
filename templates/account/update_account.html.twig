@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1> Edit your profile </h1>
+<h1> {% trans %} Edit your profile {% endtrans %} </h1>
 
     {{ form_start(accountForm) }}
         {{ form_row(accountForm.fName, {
@@ -20,6 +20,6 @@
             label: 'Birth date'
         }) }}
 
-        <button type="submit">Save</button>
+        <button type="submit"> {% trans %} Save {% endtrans %} </button>
     {{ form_end(accountForm) }}
 {% endblock %}
