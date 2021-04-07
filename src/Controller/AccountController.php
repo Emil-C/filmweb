@@ -39,10 +39,12 @@ class AccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
+            $locale = $form['locale']->getData();
+            $user->setLocale($locale);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // $this->addFlash('success', 'Data updated.');
             return $this->redirectToRoute('app_show_account');
         }
 

@@ -1,9 +1,0 @@
-{{ form_start(languageForm) }}
-    {{ form_row(languageForm.language) }}
-
-    <button type="submit" class="btn"> {% trans %} Change {% endtrans %} </button>
-{{ form_end(languageForm) }}
-
-{% for message in app.flashes('notice') %}
-    {{ message|trans }}
-{% endfor %}

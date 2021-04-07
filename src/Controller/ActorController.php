@@ -36,30 +36,4 @@ class ActorController extends AbstractController
             'fullName' => $actorConverter->getFullName($actor->getFName(), $actor->getLName())
         ]);
     }
-
-    /**
-     * @Route("/change-language", name="app_change_language")
-     */
-    public function changeLanguage(Request $request) :Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        $form = $this->createForm(LanguageFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $locale = $form->getData()['language'];
-            $user->setLocale($locale);
-
-            $entityManager->persist($user);
-            $entityManager->flush();            
-            $this->addFlash('notice', 'Your changes were saved! Log out and log in again to make the changes visible.');
-        }
-
-        return $this->render('includes/_language_form.html.twig', [
-            'languageForm' => $form->createView(),
-        ]);
-    }
 }

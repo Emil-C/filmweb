@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AccountFormType extends AbstractType
 {
@@ -19,6 +20,13 @@ class AccountFormType extends AbstractType
             ->add('birthDate', BirthdayType::class, [
                 'widget' => 'choice',
                 'format' => 'dd-MMMM-yyyy',
+            ])
+            ->add('locale', ChoiceType::class, [
+                'choices' => [
+                    'English' => 'en',
+                    'Polish' => 'pl',
+                ],
+                'mapped' => false
             ])
         ;
     }

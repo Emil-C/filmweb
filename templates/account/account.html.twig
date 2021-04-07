@@ -10,6 +10,7 @@
 {{ app.user.lName }} <br />
 {{ app.user.birthDate|date('d.m.Y') }} <br />
 {{ app.user.email }} <br />
+{{ app.user.locale }} <br />
 
 <a href="{{ path('app_update_account') }}"> {% trans %} Edit {% endtrans %} </a>
 

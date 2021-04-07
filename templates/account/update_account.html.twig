@@ -19,6 +19,9 @@
         {{ form_row(accountForm.birthDate, {
             label: 'Birth date'
         }) }}
+        {{ form_row(accountForm.locale, {
+            label: 'Language'
+        }) }}
 
         <button type="submit"> {% trans %} Save {% endtrans %} </button>
     {{ form_end(accountForm) }}
