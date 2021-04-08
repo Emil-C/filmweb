@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\AccountFormType;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +25,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/account/edit/", name="app_update_account")
      */
-    public function updateAccount(Request $request, EntityManagerInterface $entityManager): Response
+    public function updateAccount(Request $request, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
 
@@ -35,13 +33,10 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
 
             $locale = $form['locale']->getData();
             $user->setLocale($locale);
-
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $userRepository->save($user);
 
             return $this->redirectToRoute('app_show_account');
         }

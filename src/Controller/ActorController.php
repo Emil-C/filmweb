@@ -14,7 +14,7 @@ class ActorController extends AbstractController
     /**
      * @Route("/actors", name="app_show_all_actors")
      */
-    public function showAllActors(ActorRepository $actorRepository, Request $request): Response
+    public function showAllActors(ActorRepository $actorRepository): Response
     {
         $actors = $actorRepository->findAllActors();
 
