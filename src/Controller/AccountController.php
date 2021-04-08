@@ -18,7 +18,6 @@ class AccountController extends AbstractController
      */
     public function showAccount(): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         
         return $this->render('account/account.html.twig', [
@@ -30,7 +29,6 @@ class AccountController extends AbstractController
      */
     public function updateAccount(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
         $form = $this->createForm(AccountFormType::class, $user);
