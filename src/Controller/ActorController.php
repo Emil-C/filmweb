@@ -3,10 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Actor;
-use App\Entity\User;
-use App\Form\LanguageFormType;
 use App\Repository\ActorRepository;
-use App\Service\ActorConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,11 +26,10 @@ class ActorController extends AbstractController
     /**
      * @Route("/actor/{id}", name="app_show_actor_profile")
      */
-    public function showActorProfile(Actor $actor, ActorConverter $actorConverter): Response
+    public function showActorProfile(Actor $actor): Response
     {
         return $this->render('actor/actor_profile.html.twig', [
             'actor' => $actor,
-            'fullName' => $actorConverter->getFullName($actor->getFName(), $actor->getLName())
         ]);
     }
 }

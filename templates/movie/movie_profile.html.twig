@@ -9,7 +9,7 @@
     {% endif %}
 
     {{ movie.description|raw }} <br />
-    {{ duration }} <br />
+    {{ duration(movie.duration) }} <br />
     {{ movie.premiere|date('d') }}
     {{ movie.premiere|date('F') }}
     {{ movie.premiere|date('Y') }} <br />

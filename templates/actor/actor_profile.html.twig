@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1> {{ fullName }} </h1>
+<h1> {{ fullName(actor.fName, actor.lName) }} </h1>
     {{ actor.biography|raw }}
     {{ actor.birthDate|date('d.m.Y') }}
 

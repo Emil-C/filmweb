@@ -26,11 +26,10 @@ class MovieController extends AbstractController
     /**
      * @Route("/movie/{title}?{id}", name="app_show_one_movie")
      */
-    public function showOneMovie(Movie $movie, DurationConverter $durationConverter): Response
+    public function showOneMovie(Movie $movie): Response
     {
         return $this->render('movie/movie_profile.html.twig', [
             'movie' => $movie,
-            'duration' => $durationConverter->convertToHours($movie->getDuration())
         ]);
 
     }
