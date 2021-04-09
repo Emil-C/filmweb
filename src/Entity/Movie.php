@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,32 +18,32 @@ class Movie
      * @ORM\Id
      * @ORM\Column(type="string", unique=true)
      */
-    private $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $duration;
+    private int $duration;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $premiere;
+    private DateTimeInterface $premiere;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $poster;
+    private ?string $poster;
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="movies")

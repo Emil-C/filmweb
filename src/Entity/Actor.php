@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ActorRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,17 +19,17 @@ class Actor
      * @ORM\Id
      * @ORM\Column(type="string", unique=true)
      */
-    private $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fName;
+    private string $fName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lName;
+    private string $lName;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -37,12 +38,12 @@ class Actor
      *      max = "now",
      * )
      */
-    private $birthDate;
+    private ?DateTimeInterface $birthDate;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $biography;
+    private string $biography;
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="actors")

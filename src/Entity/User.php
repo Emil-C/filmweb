@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,45 +21,45 @@ class User implements UserInterface, EquatableInterface
      * @ORM\Id
      * @ORM\Column(type="string", unique=true)
      */
-    private $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    private string $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fName;
+    private string $fName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lName;
+    private string $lName;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Range(
      *      max = "now-12 years")
      */
-    private $birthDate;
+    private DateTimeInterface $birthDate;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $locale;
+    private string $locale;
 
 
     public function __construct()
