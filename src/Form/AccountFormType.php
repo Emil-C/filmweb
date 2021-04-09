@@ -25,8 +25,7 @@ class AccountFormType extends AbstractType
                 'choices' => [
                     'English' => 'en',
                     'Polish' => 'pl',
-                ],
-                'mapped' => false
+                ]
             ])
         ;
     }

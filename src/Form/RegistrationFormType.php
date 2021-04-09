@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +26,12 @@ class RegistrationFormType extends AbstractType
             ->add('birthDate', BirthdayType::class, [
                 'widget' => 'choice',
                 'format' => 'dd-MMMM-yyyy',
+            ])
+            ->add('locale', ChoiceType::class, [
+                'choices' => [
+                    'English' => 'en',
+                    'Polish' => 'pl',
+                ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

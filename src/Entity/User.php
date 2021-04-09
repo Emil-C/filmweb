@@ -56,7 +56,7 @@ class User implements UserInterface, EquatableInterface
     private $birthDate;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $locale;
 
