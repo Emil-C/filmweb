@@ -6,4 +6,12 @@
     {{ actor.biography|raw }}
     {{ actor.birthDate|date('d.m.Y') }}
 
+<h3> Played in: </h3>
+{% for movie in actor.movie %}
+    {{ movie.title }} <br />
+
+    {% if movie.poster|default %}
+        <img src="{{ asset('uploads/images/' ~ movie.poster)|imagine_filter('thumbnail_medium') }}"> <br />
+    {% endif %}
+{% endfor %}
 {% endblock %}

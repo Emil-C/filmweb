@@ -13,6 +13,15 @@
     {{ movie.premiere|date('d') }}
     {{ movie.premiere|date('F') }}
     {{ movie.premiere|date('Y') }} <br />
-    {# {{ movie.genre.name }} #}
+    
+    {% trans %} Genre {% endtrans %}
+    {% for genre in movie.genre %}
+        {{ genre.name }}
+    {% endfor %}
+
+    {% trans %} Cast {% endtrans %}
+    {% for actor in movie.actors %}
+        {{ fullName(actor.fName, actor.lName) }}
+    {% endfor %}
 
 {% endblock %}
