@@ -61,6 +61,11 @@ class User implements UserInterface, EquatableInterface
      */
     private string $locale;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $login;
+
 
     public function __construct()
     {
@@ -91,7 +96,7 @@ class User implements UserInterface, EquatableInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->login;
     }
 
     /**
@@ -206,5 +211,17 @@ class User implements UserInterface, EquatableInterface
         }
 
         return true;
+    }
+
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(string $login): self
+    {
+        $this->login = $login;
+
+        return $this;
     }
 }

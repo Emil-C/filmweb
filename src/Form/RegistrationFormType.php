@@ -22,6 +22,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('fName')
             ->add('lName')
+            ->add('login')
             ->add('email')
             ->add('birthDate', BirthdayType::class, [
                 'widget' => 'choice',
