@@ -1,6 +1,7 @@
 All actors in the database: Wszyscy aktorzy w bazie
 There's no actors yet: Brak wyników
 No movies in the database: Brak wyników
+All movies in the database: Wszystkie filmy w bazie
 You are logged in as: Jesteś zalogowany jako
 Logout: Wyloguj
 Please sign in: Zaloguj się
@@ -27,3 +28,9 @@ Your account: Twoje konto
 English: angielski
 Polish: polski
 E-mail: E-mail
+Title: Tytuł
+Description: Opis
+Duration [min]: Długość [w minutach]
+Premiere: Premiera
+Name: Nazwa
+Biography: Biografia

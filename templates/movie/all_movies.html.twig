@@ -3,7 +3,7 @@
 {% block body %}
 
     {% if movies %}
-        <h1> All movies in the databse: </h1>
+        <h1> {% trans %} All movies in the database {% endtrans %}</h1>
         {% for movie in movies %}
             {{ loop.index }}.
             
