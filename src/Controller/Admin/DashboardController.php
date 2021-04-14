@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Actor;
+use App\Entity\Comment;
 use App\Entity\Genre;
 use App\Entity\Movie;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -37,5 +38,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Actors', 'fas fa-users', Actor::class);
         yield MenuItem::linkToCrud('Movies', 'fas fa-film', Movie::class);
         yield MenuItem::linkToCrud('Genres', 'fas fa-list', Genre::class);
+        yield MenuItem::linkToCrud('Comments', 'fas fa-list', Comment::class);
     }
 }

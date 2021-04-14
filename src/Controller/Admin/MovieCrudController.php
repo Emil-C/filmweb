@@ -27,7 +27,7 @@ class MovieCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-            ->hideOnForm()
+                ->hideOnForm()
                 ->hideOnIndex()
                 ->hideOnDetail(),
                 TextField::new('title'),
