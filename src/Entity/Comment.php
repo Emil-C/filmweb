@@ -34,6 +34,12 @@ class Comment
      */
     private $author;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Movie::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $movie;
+
     public function __construct()
     {
         $this->id = Uuid::uuid4();
@@ -79,6 +85,18 @@ class Comment
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getMovie(): ?Movie
+    {
+        return $this->movie;
+    }
+
+    public function setMovie(?Movie $movie): self
+    {
+        $this->movie = $movie;
 
         return $this;
     }
