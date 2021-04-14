@@ -27,7 +27,8 @@ class CommentCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->hideOnDetail()
                 ->hideOnIndex(),
-            AssociationField::new('author'),
+            AssociationField::new('author')
+                ->hideOnForm(),
             DateTimeField::new('createdAt')
                 ->hideonForm(),
             TextEditorField::new('text', 'Content'),
@@ -54,6 +55,7 @@ class CommentCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->add(Crud::PAGE_INDEX, Action::DETAIL);
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 }
