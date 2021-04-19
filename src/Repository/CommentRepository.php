@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -28,15 +30,13 @@ class CommentRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findMovieCommentsByNewest($movie): array
+    public function findMovieCommentsByOldest(Movie $movie): QueryBuilder
     {
         return $this
             ->createQueryBuilder('c')
             ->andWhere('c.movie = :val')
             ->setParameter('val', $movie)
-            ->orderBy('c.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->orderBy('c.createdAt', 'ASC');
     }
 
     public function save(Comment $comment) :void

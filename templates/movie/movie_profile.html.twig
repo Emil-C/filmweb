@@ -32,15 +32,16 @@
         {{ form_end(commentForm) }}
     {% endif %}
 
-    {% if comments %}
-        <h3> {% trans %} All comments {% endtrans %} </h3>
+    {% if pagination %}
+        <h3> {% trans %} All comments {% endtrans %}({{ pagination.getTotalItemCount }}) </h3>
 
-        {% for comment in comments %}
+        {% for comment in pagination %}
             {{ comment.author }}
             <small> {% trans %} Created {% endtrans %}
                 {{ comment.createdAt|ago }} </small> <br />
             {{ comment.text }} <br /><br />
         {% endfor %}
+            {{ knp_pagination_render(pagination) }}
     {% else %}
         <h4>{% trans %} No comments yet. {% endtrans %}</h4>
     {% endif %}

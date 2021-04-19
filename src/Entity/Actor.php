@@ -43,7 +43,7 @@ class Actor
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $biography;
+    private ?string $biography;
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="actors")
@@ -85,12 +85,12 @@ class Actor
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?DateTimeInterface
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(?\DateTimeInterface $birthDate): self
+    public function setBirthDate(?DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
 
