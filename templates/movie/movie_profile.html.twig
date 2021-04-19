@@ -24,4 +24,24 @@
         {{ fullName(actor.fName, actor.lName) }}
     {% endfor %}
 
+    {% if is_granted('ROLE_USER') %}
+    <h3> {% trans %} Add comment {% endtrans %} </h3>
+        {{ form_start(commentForm) }}
+            {{ form_row(commentForm.text, {label: false}) }}
+    <button type="submit" class="btn"> {% trans %} Add comment {% endtrans %}</button>
+        {{ form_end(commentForm) }}
+    {% endif %}
+
+    {% if comments %}
+        <h3> {% trans %} All comments {% endtrans %} </h3>
+
+        {% for comment in comments %}
+            {{ comment.author }}
+            <small> {% trans %} Created {% endtrans %}
+                {{ comment.createdAt|ago }} </small> <br />
+            {{ comment.text }} <br /><br />
+        {% endfor %}
+    {% else %}
+        <h4>{% trans %} No comments yet. {% endtrans %}</h4>
+    {% endif %}
 {% endblock %}

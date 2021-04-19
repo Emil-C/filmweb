@@ -25,6 +25,7 @@ class UserFixture extends Fixture
         $user->setFName('Emil');
         $user->setLName('Nowak');
         $user->setEmail('emil@op.pl');
+        $user->setBirthDate(new DateTime('05-05-1995'));
         $user->setLocale('en');
         $user->setLogin('emil.n');
         $user->setRoles(['ROLE_ADMIN']);
@@ -33,18 +34,12 @@ class UserFixture extends Fixture
             'test123'
         ));
         $manager->persist($user);
-        
-        $comment1 = new Comment();
-        $comment1->setText('comment comment comment 1');
-        $comment1->setCreatedAt();
-        $comment1->setAuthor($user);
-        $manager->persist($comment1);
-        
 
         $user1 = new User();
         $user1->setFName('Janusz');
         $user1->setLName('Kowalski');
         $user1->setEmail('j.kowalski@op.pl');
+        $user1->setBirthDate(new DateTime('17-02-1982'));
         $user1->setLocale('pl');
         $user1->setLogin('janek');
         $user1->setRoles(['ROLE_USER']);
@@ -61,6 +56,12 @@ class UserFixture extends Fixture
         $movie->setDuration(123);
         $manager->persist($movie);
 
+        $comment1 = new Comment();
+        $comment1->setText('comment comment comment 1');
+        $comment1->setCreatedAt();
+        $comment1->setAuthor($user);
+        $comment1->setMovie($movie);
+        $manager->persist($comment1);
 
         $manager->flush();
     }

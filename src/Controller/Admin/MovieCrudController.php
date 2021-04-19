@@ -30,12 +30,12 @@ class MovieCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->hideOnIndex()
                 ->hideOnDetail(),
-                TextField::new('title'),
-                TextEditorField::new('description'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
             IntegerField::new('duration', 'Duration [min]'),
             DateField::new('premiere')
-            ->formatValue(function ($value) {
-                $currentDate = strtotime(date('d M Y'));
+                ->formatValue(function ($value) {
+                    $currentDate = strtotime(date('d M Y'));
                     $premierDate = strtotime($value);
                     
                     return $currentDate > $premierDate ? $value : 'Coming soon ' . $value;
@@ -45,7 +45,9 @@ class MovieCrudController extends AbstractCrudController
                 ->setBasePath('/uploads/images')
                 ->setUploadDir('/public/uploads/images/'),
             AssociationField::new('genre'),
-            AssociationField::new('actors')
+            AssociationField::new('actors'),
+            AssociationField::new('comments')
+                ->hideOnForm()
         ];
     }
     

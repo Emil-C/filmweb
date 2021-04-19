@@ -27,6 +27,7 @@ class CommentCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->hideOnDetail()
                 ->hideOnIndex(),
+            AssociationField::new('movie'),
             AssociationField::new('author')
                 ->hideOnForm(),
             DateTimeField::new('createdAt')
@@ -38,6 +39,7 @@ class CommentCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
+            ->add('movie')
             ->add('author')
             ->add('createdAt')
             ->add('text')

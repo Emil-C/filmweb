@@ -19,6 +19,32 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function findAllComments(): array
+    {
+        return $this
+            ->createQueryBuilder('c')
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findMovieCommentsByNewest($movie): array
+    {
+        return $this
+            ->createQueryBuilder('c')
+            ->andWhere('c.movie = :val')
+            ->setParameter('val', $movie)
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function save(Comment $comment) :void
+    {
+        $this->_em->persist($comment);
+        $this->_em->flush();
+    }
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */

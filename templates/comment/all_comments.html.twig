@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if comments %}
+{#        <h1> {% trans %} Comments {% endtrans %}</h1>#}
+        {% for comment in comments %}
+            {{ comment.author }}
+            <small> {% trans %} Created {% endtrans %}
+                {{ comment.createdAt|ago }} </small> <br />
+            {{ comment.text }} <br /><br />
+        {% endfor %}
+    {% else %}
+        <h2> {% trans %} No comments yet {% endtrans %}</h2>
+    {% endif %}
+
+{% endblock %}
