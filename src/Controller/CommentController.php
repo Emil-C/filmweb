@@ -47,7 +47,7 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('app_show_one_movie', [
                 'title' => $movie->getTitle(),
                 'id' => $movie->getId(),
-                'page' => $request->query->getInt('page')
+                'page' => $request->query->getInt('page', 1)
             ]);
         }
         return $this->render('movie/movie_profile.html.twig', [
